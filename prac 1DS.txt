@@ -1,0 +1,32 @@
+import pandas as pd
+df = pd.read_csv('iris.CSV')
+df
+df.describe()
+df.isnull()
+df.shape
+df.dtypes
+df.head(5)
+df.tail(5)
+df.index
+df.columns
+df.iloc[5]
+df.dtypes
+df['species']
+df.sort_values(by="petal_length")
+df.sort_index(axis=1, ascending=False)
+df.iloc[:5, :]
+df.iloc[:, :3]
+df.iloc[:5, :3]
+
+
+
+
+
+
+
+
+
+
+
+
+

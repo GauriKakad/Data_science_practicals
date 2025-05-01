@@ -1,0 +1,46 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+df = pd.read_csv('Titanic-Dataset.csv')
+df
+
+sns.set(style = 'whitegrid')
+
+plt.figure(figsize = (10,6))
+sns.histplot(df['Fare'], kde=True, bins=30, color='skyblue')
+plt.title('Distribution of Ticket Fare')
+plt.xlabel('Fare')
+plt.ylabel('Number of Passengers')
+plt.show()
+
+sns.histplot(df['Fare'], kde=True, bins=30, color='skyblue')
+plt.title('Fare Distribution')
+plt.show()
+
+sns.displot(df['Age'].dropna(), bins=30, kde=True, color='orange')
+plt.title('Age Distribution')
+plt.show()
+
+sns.jointplot(x='Age', y='Fare', data=df, kind='scatter', color='orange')
+plt.title('Age vs Fare', y=1.02)
+plt.show()
+
+sns.rugplot(x='Fare', data=df, height=0.05, color='purple')
+plt.title('Fare Rug Plot')
+plt.show()
+
+sns.barplot(x='Pclass', y='Fare', data=df)
+plt.title('Average fare by class')
+plt.show()
+
+sns.countplot(x='Sex', data=df)
+plt.title('Passenger count by Sex')
+plt.show()
+
+sns.boxplot(x='Pclass', y='Age', data=df)
+plt.title('Age Distribution by Passenger Class')
+plt.show()
+
+sns.violinplot(x='Sex', y='Fare', data=df, color='purple')
+plt.title('Fare Distribution by Sex')
+plt.show()

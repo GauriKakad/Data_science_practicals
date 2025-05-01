@@ -1,0 +1,40 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv('iris.csv')
+df
+
+df.head()
+
+df.tail()
+
+df = df.drop(columns=["petal_length"])
+sns.set(style="whitegrid")
+numeric_features = df.select_dtypes(include=["float64","int64"]).columns
+
+plt.figure(figsize=(12,8))
+for i, col in enumerate(numeric_features, 1):
+    plt.subplot(2, 2, i)
+    sns.histplot(df[col], kde=True, bins=20, color='skyblue')
+    plt.title(f'Histogram of {col}')
+    plt.tight_layout()
+    plt.show()
+
+plt.figure(figsize=(12,8))
+for i, col in enumerate(numeric_features, 1):
+    plt.subplot(2, 2, i)
+    sns.boxplot(x=df[col], color='lightgreen')
+    plt.title(f'Boxplot of {col}')
+    plt.tight_layout()
+    plt.show()
+
+plt.figure(figsize=(12,8))
+for i, col in enumerate(numeric_features, 1):
+    plt.subplot(2, 2, i)
+    sns.boxplot(x="species", y=col, hue="species",  data=df, palette="Set2", legend=False)
+    plt.title(f'{col} by species')
+    plt.xlabel("species")
+    plt.ylabel(col)
+    plt.tight_layout()
+    plt.show()

@@ -1,0 +1,97 @@
+import nltk
+nltk.download('punkt')  # this imports the Natural Language Toolkit (NLTK) library, which is a powerful Python library used for text processing, like tokenization, part-of-speech tagging, and more.
+
+import nltk
+nltk.download('averaged_perceptron_tagger') #The Averaged Perceptron Tagger is a trained tool in NLTK that can automatically label each word with its part of speech (like "dog" = noun, "run" = verb).
+
+import nltk
+nltk.download('punkt_tab')# punkt-It helps break down large text into smaller pieces
+
+import nltk
+nltk.download('averaged_perceptron_tagger_eng') #referring to the Averaged Perceptron Tagger for English
+
+
+import re #regular expression (re) module to work with text patterns
+import nltk
+from nltk.corpus import stopwords# This imports a list of common words (like 'is', 'the', 'and') from NLTK
+from nltk.stem import PorterStemmer, WordNetLemmatizer # Imports tools to reduce words to their base/root forms
+from sklearn.feature_extraction.text import TfidfVectorizer# Imports a tool to convert text into numerical form (for ML)
+
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('wordnet') # Downloads the WordNet dictionary used for lemmatization
+document = "Natural Language Processing is a crucial field in Artificial Intelligence. It helps machines understand human language."
+
+tokens = nltk.word_tokenize(document.lower())# Breaks the text into words after converting to lowercase
+print("Tokens:", tokens) #This line prints the list of words (tokens) that were created from your text.
+
+pos_tags = nltk.pos_tag(tokens)# Assigns a part-of-speech (POS) tag to each token
+print("POS Tags:", pos_tags)#This line will print the part-of-speech tags assigned to each word in your text
+
+
+# Get the list of common stop words in English
+stop_words = set(stopwords.words('english'))
+
+# Remove non-alphabetical words and stop words from the tokens
+filtered_tokens = [word for word in tokens if word.isalpha() and word not in stop_words]
+
+# Print the filtered tokens after removing stop words
+print("After Stop Words Removal:", filtered_tokens)
+
+# Initialize the Porter Stemmer
+stemmer = PorterStemmer()
+
+# Apply stemming to each filtered token to get its root form
+stemmed_tokens = [stemmer.stem(word) for word in filtered_tokens]
+
+# Print the tokens after stemming (root words)
+print("After Stemming:", stemmed_tokens)
+
+# Initialize the WordNet Lemmatizer
+lemmatizer = WordNetLemmatizer()
+
+# Apply lemmatization to each filtered token to get its base form (lemma)
+lemmatized_tokens = [lemmatizer.lemmatize(word) for word in filtered_tokens]
+
+# Print the tokens after lemmatization (base forms of words)
+print("After Lemmatization:", lemmatized_tokens)
+
+
+# Define the list of documents (here, it's a single document)
+documents = [document]
+
+# Initialize the TfidfVectorizer to convert text data into a matrix of TF-IDF features
+vectorizer = TfidfVectorizer()
+
+# Apply the vectorizer to the document(s) and create the TF-IDF matrix
+tfidf_matrix = vectorizer.fit_transform(documents)
+
+# Print the TF-IDF matrix as an array (numerical representation of the document)
+print("\nTF-IDF Matrix:")
+print(tfidf_matrix.toarray())
+
+
+# Print the feature names (words) used in the TF-IDF matrix
+print("\nTF-IDF Feature Names:")
+print(vectorizer.get_feature_names_out())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

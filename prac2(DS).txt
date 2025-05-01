@@ -1,0 +1,41 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+df = pd.read_csv('StudentPerformance.csv')
+df
+
+df.isnull()
+
+series = pd.isnull(df['Gender'])
+df[series]
+
+df.notnull()
+
+series1 = pd.notnull(df['Gender'])
+df[series1]
+
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+df['Gender'] = le.fit_transform(df['Gender'])
+ndf=df
+df
+
+missing_values = ['Na','na']
+df = pd.read_csv('StudentPerformance.csv', na_values = missing_values)
+df
+
+missing_values = df['Gender'].mean()
+df['Gender'].fillna(value=missing_values, inplace=True)
+df
+
+ndf=df
+ndf.dropna()
+
+col = ['Math_Score','Reading_Score','Writing_Score','Placement_Offer_Count','Club_Join_Date']
+df.boxplot(col)
+
+fig, ax = plt.subplots(figsize = (18,10))
+ax.scatter(df['Reading_Score'], df['Placement_Offer_Count'])
+
+plt.show()

@@ -1,0 +1,14 @@
+import pandas as pd
+df= pd.read_csv('iris.CSV')
+df
+df.dtypes
+df.select_dtypes(include='number').mean()
+df.loc[:,'sepal_length'].mean()
+df.select_dtypes(include='number').median()
+df.select_dtypes(include='number').mode()
+df.loc[0:5,['sepal_length']].median()
+df.loc[0:10,['petal_length']].mean()
+df.loc[0:5,['sepal_length']].mode()
+df.select_dtypes(include='number').min()
+df.select_dtypes(include='number').max()
+df.select_dtypes(include='number').std()
